@@ -15,6 +15,6 @@ export default authMiddleware({
 })
 
 
-export const config = {
+export const config = { 
   matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|logo.png|sw.js).*)']
 };
