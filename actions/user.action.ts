@@ -1,8 +1,9 @@
 'use server'
 
 import { connectToDatabase } from '@/lib/mongoose'
-import { ICreateUser } from '.'
+import { ICreateUser, IUpdateUser } from '.'
 import User from '@/database/user.model'
+import { revalidatePath } from 'next/cache'
 
 
 export const createUser = async (data: ICreateUser) => {
@@ -26,5 +27,16 @@ export const createUser = async (data: ICreateUser) => {
 		return newUser
 	} catch (error) {
 		throw new Error('Error creating user. Please try again.')
+	}
+}
+export const updateUser = async (data: IUpdateUser) => {
+	try {
+		await connectToDatabase()
+		const { clerkId, updatedData, path } = data
+		const updateduser = await User.findOneAndUpdate({ clerkId }, updatedData)
+		if (path) return revalidatePath(path)
+		return updateduser
+	} catch (error) {
+		throw new Error('Error updating user. Please try again.')
 	}
 }
