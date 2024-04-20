@@ -11,7 +11,7 @@ export default authMiddleware({
 	publicRoutes: [
 		'/:lng',
 	],
-	ignoredRoutes: ['/en/api/webhook'],
+	ignoredRoutes: ['/uz/api/webhook'],
 })
 
 

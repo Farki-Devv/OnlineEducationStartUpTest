@@ -2,15 +2,14 @@ import mongoose, { ConnectOptions } from 'mongoose'
 
 let isConnected: boolean = false
 
-export const connectToDatabase = async () => {
+export const cpnnectToDatabase = async () => {
 	mongoose.set('strictQuery', true)
-
-	if (!process.env.MONGODB_URL) {
-		return console.log('MISSING MONGODB_URL')
+	if (!process.env.MONGODB_URl) {
+		return console.log('Mongodb url is not defind')
 	}
 
 	if (isConnected) {
-		return
+		return console.log('MongoDB is already connected')
 	}
 
 	try {
@@ -18,10 +17,9 @@ export const connectToDatabase = async () => {
 			dbName: process.env.MONGODB_DB,
 			autoCreate: true,
 		}
-
-		await mongoose.connect(process.env.MONGODB_URL, options)
+		await mongoose.connect(process.env.MONGODB_URl, options)
 		isConnected = true
 	} catch (error) {
-		console.log('MongoDB connection failed')
+		console.log('error connect to database')
 	}
 }

@@ -1,12 +1,16 @@
+'use client'
 import { ICOurse } from '@/types'
 import React from 'react'
 
 import Image from 'next/image'
+import {  useRouter } from 'next/navigation'
 
 interface Props {
 	course: ICOurse
 }
 function CourseItem({ course }: Props) {
+
+	const route = useRouter()
 	return (
 		<div className='max-w-7xl  cursor-pointer overflow-hidden rounded shadow-md hover:shadow-xl'>
 			<Image
@@ -15,6 +19,7 @@ function CourseItem({ course }: Props) {
 				width={400}
 				height={200}
 				alt='Sunset in the mountains'
+				onClick={() =>route.push(`/lessons/${course.id}`)} 
 			/>
 			<div className='px-6 py-4'>
 				<div className='mb-2 text-xl font-bold'>The Coldest Sunset</div>

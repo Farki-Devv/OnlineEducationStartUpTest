@@ -14,4 +14,12 @@ export interface ICOurse {
 	students:number
 	image:string
 	id:number
+	level:number
+	duration:number
+	quizzes:number
+	certifications:string
+	graduation:number
+}
+export interface LngParams {
+	params: { lng: string }
 }
